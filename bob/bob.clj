@@ -1,26 +1,30 @@
-(ns bob)
+(ns bob
+  (:require (clojure.string))
+  (:use [clojure.string :only [blank?]]))
 
-(defn question? [msg]
-  (= \? (last msg)))
+(defn- char-upper? [ch]
+  (java.lang.Character/isUpperCase ch))
 
-(defn nothing? [msg]
-  (empty? (clojure.string/trim msg)))
+(defn- char-letter? [ch]
+  (java.lang.Character/isLetter ch))
 
-(defn anything? [msg]
-  (re-find #"[a-zA-Z0-9]+" msg))
+(defn- upper-case? [str]
+  (every? char-upper? str))
 
-(defn str-only-alpha [msg]
-  (let [patt #"[^a-zA-Z]"]
-    (clojure.string/replace msg patt "")))
+(defn- question? [str]
+  (= \? (last str)))
 
-(defn yelling? [msg]
-  (let [msg' (str-only-alpha msg)]
-    (and (anything? msg')
-         (= msg' (clojure.string/upper-case msg')))))
+(defn- filter-alpha-chars [str]
+  (filter char-letter? str))
+
+(defn- yelling? [str]
+  (let [str (filter-alpha-chars str)]
+    (and (not (empty? str))
+         (upper-case? str))))
 
 (defn response-for [msg]
   (cond
-    (nothing? msg) "Fine. Be that way!"
+    (blank? msg) "Fine. Be that way!"
     (yelling? msg) "Woah, chill out!"
     (question? msg) "Sure."
     :else "Whatever."))
