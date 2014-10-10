@@ -1,14 +1,17 @@
 (ns rna-transcription)
 
+(defn- valid-dna-nuclotide? [nucleotide]
+  (some #(= nucleotide %) "GCTA"))
+
 (defn- transcribe [nucleotide]
+  {:pre [(valid-dna-nuclotide? nucleotide)]}
   "Returns the RNA complement of the given DNA neuclotide.
    Throws AssertionError when given an invalid neuclotide."
   (condp = nucleotide
     \G \C
     \C \G
     \T \A
-    \A \U
-    (throw (AssertionError. "Invalid neuclotide"))))
+    \A \U))
 
 (defn- chars-to-string [chars]
   "Composes a new string given a chars sequence."
