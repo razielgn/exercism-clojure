@@ -1,6 +1,5 @@
 (ns bob
-  (:require (clojure.string))
-  (:use [clojure.string :only [blank?]]))
+  (:require [clojure.string :refer [blank?]]))
 
 (defn- char-upper? [ch]
   (java.lang.Character/isUpperCase ch))
