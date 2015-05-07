@@ -1,12 +1,12 @@
 (ns grade-school)
 
-(defn add [db student grade]
-  (let [students (get db grade [])
-        new-students (conj students student)]
-    (assoc db grade new-students)))
+(defn grade [db n]
+  (get db n []))
 
-(defn grade [db grade]
-  (get db grade []))
+(defn add [db student n]
+  (let [students (grade db n)
+        new-students (conj students student)]
+    (assoc db n new-students)))
 
 (defn sorted [db]
   (let [value-sorter (fn [s [k v]]
