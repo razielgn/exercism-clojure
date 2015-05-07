@@ -37,4 +37,4 @@
   [string]
   (let [no (number string)
         [ac oc lc] (break-number no)]
-    (str "(" ac ") " oc "-" lc)))
+    (format "(%s) %s-%s" ac oc lc)))
