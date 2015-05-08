@@ -3,8 +3,8 @@
 (defn robot []
   {:name (atom "")})
 
-(def letters (map char (range 65 90)))
-(def numbers (map char (range 48 58)))
+(def ^:private letters (map char (range 65 90)))
+(def ^:private numbers (map char (range 48 58)))
 
 (defn- random-name []
   (let [letter #(rand-nth letters)

@@ -4,13 +4,13 @@
 (defn- char-digit? [ch]
   (java.lang.Character/isDigit ch))
 
-(def invalid-number "0000000000")
+(def ^:private invalid-number "0000000000")
 
 (defn number
   "Removes non-numeric characters."
   [string]
   (let [digits (filter char-digit? string)]
-    (condp = (count digits)
+    (case (count digits)
       10 (str/join digits)
       11 (if (= \1 (first digits))
            (str/join (rest digits))

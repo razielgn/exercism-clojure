@@ -1,7 +1,7 @@
 (ns nucleotide-count
   (:require [clojure.core :as core]))
 
-(def nucleotide-counts-base
+(def ^:private nucleotide-counts-base
   {\A 0 \T 0 \C 0 \G 0})
 
 (defn nucleotide-counts

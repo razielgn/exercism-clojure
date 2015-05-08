@@ -3,7 +3,7 @@
             [clj-time.predicates :as p]))
 
 (defn- predicate-for-day [weekday]
-  (condp = weekday
+  (case weekday
     :monday p/monday?
     :tuesday p/tuesday?
     :wednesday p/wednesday?
@@ -13,7 +13,7 @@
     :sunday p/sunday?))
 
 (defn- find-day [schedule candidates]
-  (condp = schedule
+  (case schedule
     :first (first candidates)
     :second (second candidates)
     :third (nth candidates 2)

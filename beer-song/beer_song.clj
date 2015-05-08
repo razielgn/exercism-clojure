@@ -2,7 +2,7 @@
   (:require [clojure.string :as s]))
 
 (defn- bottles-of-beer [n]
-  (condp = n
+  (case n
     0 "no more bottles of beer"
     1 "1 bottle of beer"
     (str n " bottles of beer")))
@@ -14,10 +14,10 @@
             bottles)))
 
 (defn- second-line [n]
-  (if (= n 0)
+  (if (zero? n)
     (format "Go to the store and buy some more, %s on the wall.\n"
             (bottles-of-beer 99))
-    (let [bottles (bottles-of-beer (- n 1))
+    (let [bottles (bottles-of-beer (dec n))
           obj-complement (if (= n 1) "it" "one")]
       (format "Take %s down and pass it around, %s on the wall.\n"
               obj-complement
@@ -31,7 +31,7 @@
   ([from]
    (sing from 0))
   ([from to]
-   (->> (range to (+ from 1))
+   (->> (range to (inc from))
         reverse
         (map verse)
         (reduce #(str %1 "\n" %2)))))

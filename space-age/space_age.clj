@@ -1,6 +1,6 @@
 (ns space-age)
 
-(def seconds-in-earth-year
+(def ^:private seconds-in-earth-year
   (* 3600 24 365.25))
 
 (defn on-earth [seconds]

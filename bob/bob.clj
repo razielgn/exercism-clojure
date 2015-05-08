@@ -7,19 +7,19 @@
 (defn- char-letter? [ch]
   (java.lang.Character/isLetter ch))
 
-(defn- upper-case? [str]
-  (every? char-upper? str))
+(defn- upper-case? [s]
+  (every? char-upper? s))
 
-(defn- question? [str]
-  (= \? (last str)))
+(defn- question? [s]
+  (= \? (last s)))
 
-(defn- filter-alpha-chars [str]
-  (filter char-letter? str))
+(defn- filter-alpha-chars [s]
+  (filter char-letter? s))
 
-(defn- yelling? [str]
-  (let [str (filter-alpha-chars str)]
-    (and (not (empty? str))
-         (upper-case? str))))
+(defn- yelling? [s]
+  (let [s (filter-alpha-chars s)]
+    (and (seq s)
+         (upper-case? s))))
 
 (defn response-for [msg]
   (cond
