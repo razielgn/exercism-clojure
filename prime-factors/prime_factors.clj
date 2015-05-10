@@ -1,14 +1,17 @@
 (ns prime-factors)
 
-(defn- first-factor-of [n]
-  (first (drop-while #(pos? (mod n %))
-                     (range 2 (inc n)))))
+(defn- div-by? [n m]
+  (zero? (mod n m)))
 
 (defn of [n]
   (loop [n n
+         m 2
          factors []]
-    (if (= n 1)
-      factors
-      (let [factor (first-factor-of n)]
-        (recur (/ n factor)
-               (conj factors factor))))))
+    (cond
+      (= n 1)       factors
+      (div-by? n m) (recur (/ n m)
+                           m
+                           (conj factors m))
+      :else         (recur n
+                           (inc m)
+                           factors))))
