@@ -1,4 +1,4 @@
 language: clojure
 
 install: true
-script: run-tests.sh
+script: bash run-tests.sh
