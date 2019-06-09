@@ -1,0 +1,3 @@
+language: clojure
+
+script: run-tests.sh
